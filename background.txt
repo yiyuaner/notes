@@ -1,0 +1,11 @@
+Background:
+
+Project root: /home/yguoaz/develop/arkcompiler/arkcompiler
+
+You are looking at the arkcompiler codebase. The compilation process is this: ArkTS source code (similar to typescript) --> Bytecode (*.abc) --> Panda IR --> ...
+The first step from source code to abc file is done by the "ets_frontend". We are more interested in the second step, that is, we assume our input is some abc file. 
+
+The format of Panda IR (CFG Based SSA IR) is defined in runtime_core/docs/ir_format.md and runtime_core/compiler/optimizer/ir/instructions.yaml. The implementation of Panda IR is in runtime_core/compiler/optimizer/ir/inst.h. IrBuilder is
+responsible for building Panda IR from the abc bytecode, and its implementation is in runtime_core/compiler/optimizer/ir_builder/ir_builder.cpp (The entry point is IrBuilder::RunImpl()). 
+
+We only care about ArkTS + dynamic runtime, so please ignore anything under "static_core".

@@ -1,0 +1,40 @@
+Case 1: Default (merge-abc mode enabled, non-module)
+
+/path/to/es2abc \
+    --function-threads=0 \
+    --outputProto test.protoBin \
+    test.js \
+    --merge-abc \
+    --opt-level=2
+Then a second step merges the protoBin into ABC (in gen_merged_abc()):
+
+
+/path/to/merge_abc \
+    --input test.protoBin \
+    --suffix protoBin \
+    --outputFilePath /path/to/dir \
+    --output test.abc
+Case 2: Default (merge-abc mode enabled, ES module)
+
+/path/to/es2abc \
+    --module \
+    --function-threads=0 \
+    --outputProto test.protoBin \
+    test.js \
+    --merge-abc \
+    --opt-level=2
+Case 3: No merge-abc mode (merge_abc_mode=0, non-module)
+
+/path/to/es2abc \
+    --opt-level=2 \
+    --function-threads=0 \
+    --output test.abc \
+    test.js
+Case 4: No merge-abc mode (merge_abc_mode=0, ES module)
+
+/path/to/es2abc \
+    --module \
+    --opt-level=2 \
+    --function-threads=0 \
+    --output test.abc \
+    test.js
